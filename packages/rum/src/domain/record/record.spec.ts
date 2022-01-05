@@ -98,7 +98,6 @@ describe('record', () => {
           adds: [{ rule: 'body { color: #ccc; }', index: undefined }],
         })
       )
-      expect(records[10].type).toEqual(RecordType.VisualViewport)
 
       expectNoExtraEmitCalls(done)
     })

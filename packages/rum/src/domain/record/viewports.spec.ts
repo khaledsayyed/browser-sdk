@@ -1,6 +1,4 @@
-import { getScrollX, getScrollY, getWindowWidth, getWindowHeight } from './viewports'
-
-const SCROLLBAR_WIDTH_CORRECTION = 15
+import { getScrollX, getScrollY, getWindowHeight } from './viewports'
 
 function isMobileSafari12() {
   return /iPhone OS 12.* like Mac OS.* Version\/12.* Mobile.*Safari/.test(navigator.userAgent)
@@ -16,12 +14,10 @@ describe('layout viewport', () => {
     window.scrollTo(0, 0)
   })
 
-  describe('get window width and height', () => {
+  describe('get window height', () => {
     it('normalized scroll matches native behaviour', () => {
-      const initialInnerWidth = getWindowWidth()
       const initialInnerHeight = getWindowHeight()
       expect(initialInnerHeight).toBe(window.innerHeight)
-      expect(initialInnerWidth).toBe(window.innerWidth - SCROLLBAR_WIDTH_CORRECTION)
     })
   })
 

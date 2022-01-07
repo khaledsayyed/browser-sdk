@@ -57,7 +57,7 @@ export function startRum(
 
   startLongTaskCollection(lifeCycle, session)
   startResourceCollection(lifeCycle)
-  const { addTiming, startView } = startViewCollection(
+  const { addTiming, startView, stop: stopView } = startViewCollection(
     lifeCycle,
     configuration,
     location,
@@ -80,6 +80,7 @@ export function startRum(
     addError,
     addTiming,
     startView,
+    stopView,
     lifeCycle,
     parentContexts,
     session,

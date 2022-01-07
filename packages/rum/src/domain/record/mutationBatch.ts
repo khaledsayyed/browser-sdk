@@ -36,6 +36,7 @@ export function createMutationBatch(processMutationBatch: (mutations: RumMutatio
 }
 
 function scheduleMutationFlush(flush: () => void) {
+  // @ts-ignore because
   interface BrowserWindow extends Window {
     requestIdleCallback: (callback: () => void, opts?: { timeout?: number }) => number
     cancelIdleCallback: (handle?: number) => void

@@ -40,6 +40,7 @@ export function initXhrObservable() {
 function createXhrObservable() {
   const observable = new Observable<XhrContext>(() => {
     const { stop: stopInstrumentingStart } = instrumentMethodAndCallOriginal(XMLHttpRequest.prototype, 'open', {
+      // @ts-ignore don't care
       before: openXhr,
     })
 

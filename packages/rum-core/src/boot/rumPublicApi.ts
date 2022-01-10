@@ -82,6 +82,10 @@ export function makeRumPublicApi(
     bufferApiCalls.add(() => addErrorStrategy(providedError, commonContext))
   }
 
+  let stopViewStrategy: StartRumResult['stopView'] = () => {
+    bufferApiCalls.add(() => stopViewStrategy())
+  }
+
   function clonedCommonContext(): CommonContext {
     return deepClone({
       context: globalContextManager.get(),
@@ -157,6 +161,7 @@ export function makeRumPublicApi(
       addError: addErrorStrategy,
       addTiming: addTimingStrategy,
       getInternalContext: getInternalContextStrategy,
+      stopView: stopViewStrategy
     } = startRumResults)
     bufferApiCalls.drain()
 
@@ -221,6 +226,10 @@ export function makeRumPublicApi(
 
     startView: monitor((name?: string) => {
       startViewStrategy(name)
+    }),
+
+    stopView: monitor(() => {
+      stopViewStrategy()
     }),
 
     startSessionReplayRecording: monitor(recorderApi.start),

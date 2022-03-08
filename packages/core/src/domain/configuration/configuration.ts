@@ -29,6 +29,7 @@ export interface InitConfiguration {
 
   proxyHost?: string | undefined
   proxyUrl?: string | undefined
+  proxyApiKey?: string
   beforeSend?: BeforeSendCallback | undefined
   defaultPrivacyLevel?: DefaultPrivacyLevel | undefined
 
@@ -61,6 +62,7 @@ export interface Configuration extends TransportConfiguration {
   sampleRate: number
   service: string | undefined
   silentMultipleInit: boolean
+  proxyApiKey?: string,
 
   // Event limits
   maxErrorsPerMinute: number

@@ -12,11 +12,12 @@
     "replace-build-env": "node ../../scripts/replace-build-env.js"
   },
   "dependencies": {
-    "@datadog/browser-core": "3.10.1",
+    "@datadog/browser-core": "khaledsayyed/browser-core#3360715f0cfc6ee3d5da8799e43be9bb1351a6ba",
     "tslib": "^1.10.0"
   },
   "devDependencies": {
-    "ajv": "6.12.6"
+    "ajv": "6.12.6",
+    "typescript": "4.1.5"
   },
   "repository": {
     "type": "git",

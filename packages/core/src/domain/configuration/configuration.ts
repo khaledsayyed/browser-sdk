@@ -102,6 +102,7 @@ export function validateAndBuildConfiguration(
     sampleRate: initConfiguration.sampleRate ?? 100,
     service: initConfiguration.service,
     silentMultipleInit: !!initConfiguration.silentMultipleInit,
+    proxyApiKey: initConfiguration.proxyApiKey,
 
     /**
      * beacon payload max queue size implementation is 64kb

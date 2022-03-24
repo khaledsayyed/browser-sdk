@@ -12,10 +12,28 @@ let hasReportedXhrError = false
  * to be parsed correctly without content type header
  */
 export class HttpRequest {
-  constructor(private endpointBuilder: EndpointBuilder, private bytesLimit: number) {}
+  constructor(
+    private endpointBuilder: EndpointBuilder,
+    private bytesLimit: number, 
+    private options?: { proxyApiKey?: string }
+  ) {}
 
   send(data: string | FormData, size: number, flushReason?: string) {
     const url = this.endpointBuilder.build()
+    
+    // Can't use `navigator.sendBeacon` if we need to send a custom header
+    if (this.options?.proxyApiKey) {
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'x-api-key': this.options.proxyApiKey
+        },
+        body: data,
+        // Needed so the fetch is not ignored at the end of the session
+        keepalive: true
+      }).catch(e => addMonitoringError(e));
+      return;
+    }
     const tryBeacon = !!navigator.sendBeacon && size < this.bytesLimit
     if (tryBeacon) {
       try {

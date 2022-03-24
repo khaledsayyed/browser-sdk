@@ -29,6 +29,7 @@ export interface InitConfiguration {
 
   proxyHost?: string | undefined
   proxyUrl?: string | undefined
+  proxyApiKey?: string
   beforeSend?: BeforeSendCallback | undefined
   defaultPrivacyLevel?: DefaultPrivacyLevel | undefined
 
@@ -61,6 +62,7 @@ export interface Configuration extends TransportConfiguration {
   sampleRate: number
   service: string | undefined
   silentMultipleInit: boolean
+  proxyApiKey?: string,
 
   // Event limits
   maxErrorsPerMinute: number
@@ -100,6 +102,7 @@ export function validateAndBuildConfiguration(
     sampleRate: initConfiguration.sampleRate ?? 100,
     service: initConfiguration.service,
     silentMultipleInit: !!initConfiguration.silentMultipleInit,
+    proxyApiKey: initConfiguration.proxyApiKey,
 
     /**
      * beacon payload max queue size implementation is 64kb

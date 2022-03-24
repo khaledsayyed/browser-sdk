@@ -10,7 +10,7 @@ export function startMonitoringBatch(configuration: Configuration) {
 
   function createMonitoringBatch(endpointBuilder: EndpointBuilder) {
     return new Batch(
-      new HttpRequest(endpointBuilder, configuration.batchBytesLimit),
+      new HttpRequest(endpointBuilder, configuration.batchBytesLimit, { proxyApiKey: configuration.proxyApiKey }),
       configuration.maxBatchSize,
       configuration.batchBytesLimit,
       configuration.maxMessageSize,

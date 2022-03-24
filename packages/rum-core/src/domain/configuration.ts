@@ -28,6 +28,7 @@ export interface RumConfiguration extends Configuration {
   replaySampleRate: number
   trackInteractions: boolean
   trackViewsManually: boolean
+  proxyApiKey?: string,
 
   // Event limits
   maxActionsPerMinute: number
@@ -76,5 +77,6 @@ export function validateAndBuildRumConfiguration(
       : DefaultPrivacyLevel.MASK_USER_INPUT,
 
     maxActionsPerMinute: 3000,
+    proxyApiKey: initConfiguration.proxyApiKey
   }
 }
